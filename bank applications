@@ -1,0 +1,102 @@
+package com.company;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        method start = new method();
+        start.showMenu();
+
+
+    }
+}
+
+class method {
+    int balance;
+    int previousDeposit;
+    int previousWithdrawal;
+
+    void deposit(int amount) {
+        balance = balance + amount; // the amount given will be stored to balance.
+        previousDeposit = amount; // the amount will now be stored to previous deposit as a past transaction.
+    }
+
+    void withdraw(int amount) {
+        balance = balance - amount; // the amount will be subtracted to balance then the final product will be saved as a new balance.
+        previousWithdrawal = -amount; // the negative amount given will now be saved into previous withdrawal which is will trigger the if previouswithdrawal < 0 will now operate.
+    }
+
+    void getPreviousTransaction() {
+        if (previousDeposit > 0) {
+            System.out.println("The previous deposit : " + previousDeposit);
+        } else {
+            System.out.println("There is no any deposit activity.");
+        }
+    }
+    void getPreviousTransaction1() {
+        if (previousWithdrawal < 0 ) {
+            System.out.println("The previous withdrawal :" + Math.abs(previousWithdrawal)); // the Math.abs in previous withdrawal will make int amount returns the absolute value of an int value.
+        } else {
+            System.out.println("There is no any withdrawal activity.");
+        }
+    }
+    void showMenu() {
+        char option = '\0'; // i am still unsure about char but this makes option equivalent to none symbol which switch uses to operate.
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter the following choices to use the system.");
+
+        do {
+            System.out.println("=================================================================================================================");
+            System.out.println("A. Deposit B. Withdraw C. Check Balance D. Check Deposit Activity E. Check Withdrawal Activity F. EXIT");
+            System.out.println("=================================================================================================================");
+            option = input.next().charAt(0); // it seems the char make a object option that make input next to the char symbol.
+
+
+            switch (option) { // this option makes the scanner input connected to the switch.
+
+                case 'A':
+                    System.out.println("=================================================================================================================");
+                    System.out.println("Please enter the amount you want to deposit.");
+                    System.out.println("=================================================================================================================");
+                    int amount = input.nextInt();
+                    deposit(amount);
+                    break; // break helps it go back to the starting point which is do loop.
+
+                case 'B':
+                    System.out.println("=================================================================================================================");
+                    System.out.println("Please enter the amount you want to withdraw");
+                    System.out.println("=================================================================================================================");
+                    int amount2 = input.nextInt();
+                    withdraw(amount2); // withdraw(int amount) it gonna make it operate the method you put in the input variable amount2 using methods you create named withdraw.
+                    break;
+
+                case 'C':
+                    System.out.println("=================================================================================================================");
+                    System.out.println("The remaining balance:" + balance);
+                    System.out.println("=================================================================================================================");
+                    break;
+
+                case 'D':
+                    System.out.println("=================================================================================================================");
+                    getPreviousTransaction();
+                    System.out.println("=================================================================================================================");
+                    break;
+
+                case 'E':
+                    System.out.println("=================================================================================================================");
+                    getPreviousTransaction1();
+                    System.out.println("=================================================================================================================");
+                    break;
+
+                case 'F': // Also take note if you press F it will end the program because it has no break.
+                    System.out.println("Thank you for using our service.");
+            }
+        } while (option != 'F'); // while job is to ensure to stop the loop if it meets a demand like what i made it redirect to the option symbol which is are from my scanner input that it will stop the loop if i type F.
+    }
+}
+
+
+
+
