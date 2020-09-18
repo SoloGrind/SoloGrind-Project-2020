@@ -12,9 +12,7 @@ public class Main {
 
 class operation {
     int Value;
-    int Subtraction;
     int previousAmountAdd;
-    char stopAdd = '\0';
 
     void MethodAddition(int amount) {
         if (amount > 0) {
